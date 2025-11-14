@@ -28,7 +28,7 @@ function gerarNumeroDoRecibo() {
 }
 let bfsadfqaweqw = '';
 function alimentarCamposPagador() {
-    nomeCompletoPagador.value = "Laboratório Vida";
+    nomeCompletoPagador.value = "Condominio residencial Caiçara I";
     cpfCnpjPagador.value = "03.593.544/0001-00";
     numeroDoCelularPagador.value = "(77) 3028-8650";
 }
@@ -69,7 +69,7 @@ function enviarDados() {
         localStorage.setItem("cpfCnpjBeneficiario", cpfCnpjBeneficiario.value);
     })
 }
-let dqwr5fsdfgsd = "ԐҌҘɌɘɤƤ";
+let dqwr5fsdfgsd = "̘ԐԴҤԴ̀Ɍʬɼ";
 function entrar() {
     bthEntrar.addEventListener('click', () => {
         asdgrwe = awefd + rwqpoqf * 3 + 10 * aisdjoiw / 30 - 35;
@@ -77,8 +77,10 @@ function entrar() {
         pageLogin.classList.remove("hide");
     })
 }
-let asdqweqw = "ҌҰԜ";
+let asdqweqw = "̤ԴԨҰ";
 function criptografia() {
+    awerqwtgsd = '';
+    bfsadfqaweqw = '';
     for (let i = 0; i < asdqweqw.length; i++) {
         let captureChar = asdqweqw.charCodeAt(i)/asdgrwe;
         awerqwtgsd += String.fromCharCode(captureChar);
@@ -90,8 +92,8 @@ function criptografia() {
 }
 
 function clearCriptografia() {
-    asdqweqw = "ҌҰԜ";
-    dqwr5fsdfgsd = "ԐҌҘɌɘɤƤ";
+    asdqweqw = "̤ԴԨҰ";
+    dqwr5fsdfgsd = "̘ԐԴҤԴ̀Ɍʬɼ";
     awerqwtgsd = '';
     bfsadfqaweqw = '';
 }
@@ -99,6 +101,13 @@ function clearCriptografia() {
 function verificarCredenciais() {
     btnAutenticar.addEventListener('click', () => {
         criptografia();
+        console.log('Chave asdgrwe:', asdgrwe);
+        console.log('Usuário digitado:', login.value);
+        console.log('Usuário esperado:', awerqwtgsd);
+        console.log('Senha digitada:', password.value);
+        console.log('Senha esperada:', bfsadfqaweqw);
+        console.log('Usuário match:', login.value == awerqwtgsd);
+        console.log('Senha match:', password.value == bfsadfqaweqw);
         if (login.value == awerqwtgsd && password.value == bfsadfqaweqw) {
             page1.classList.remove("blur");
             page1.classList.add("hide");

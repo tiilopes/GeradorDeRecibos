@@ -8,17 +8,19 @@
     <title>Recibo</title>
     <link rel="icon" href="./assets/img/recibo_1.png">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </head>
 
 <body>
-    <header class="flex items-center justify-center py-2 elemento">
-        <button id="btnImprimir" class="bg-green-900 text-white text-xl font-bold py-3 px-5 rounded-xl drop-shadow-lg hover:bg-green-700 transition ease-in duration-300">IMPRIMIR</button>
+    <header class="flex items-center justify-center gap-4 py-2 elemento">
+        <button id="btnImprimir" class="bg-green-900 text-white text-lg font-bold py-2 px-4 rounded-xl drop-shadow-lg hover:bg-green-700 transition ease-in duration-300">🖨️ IMPRIMIR</button>
+        <button id="btnSalvarPDF" class="bg-blue-600 text-white text-lg font-bold py-2 px-4 rounded-xl drop-shadow-lg hover:bg-blue-700 transition ease-in duration-300">📄 SALVAR PDF</button>
     </header>
     <!-- 1 Via -->
     <div class="border-b-2 border-dashed border-gray-400">
         <div class="grid grid-cols-2 px-2 py-7 border-b-2 border-green-600">
-            <img src="./assets/img/logo_2.svg" alt="Logo do Laboratório Vida">
-            <h1 class="text-sm font-medium flex justify-center items-center">Laboratório Vida</h1>
+            <img src="./assets/img/logo_1.png" alt="Condominio residencial caiçara I" class="w-32">
+            <h1 class="text-sm font-medium flex justify-center items-center">Condominio residencial Caiçara I</h1>
         </div>
         <div class="border-b-2 border-green-600 py-7 px-6 flex items-center">
             <p class="text-base font-bold w-2/6 mr-20">RECIBO</p>
@@ -51,11 +53,16 @@
         </div>
     </div>
 
+    <!-- Linha de corte com tesoura -->
+    <div class="border-b-2 border-dashed border-gray-400 flex items-center justify-center py-1 scissors-line">
+        <span class="scissors-icon">✂️</span>
+    </div>
+
     <!-- 2 Via -->
     <div>
         <div class="grid grid-cols-2 px-2 py-7 border-b-2 border-green-600">
-            <img src="./assets/img/logo_2.svg" alt="Logo do Laboratório Vida">
-            <h1 class="text-sm font-medium flex justify-center items-center">Laboratório Vida</h1>
+            <img src="./assets/img/logo_1.png" alt="Condominio residencial caiçara I" class="w-32">
+            <h1 class="text-sm font-medium flex justify-center items-center">Condominio residencial Caiçara I</h1>
         </div>
         <div class="border-b-2 border-green-600 py-7 px-6 flex items-center">
             <p class="text-base font-bold w-2/6 mr-20">RECIBO</p>
@@ -88,13 +95,111 @@
         </div>
     </div>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-size: 12px;
+            line-height: 1.4;
+        }
+        
+        .border-b-2 {
+            border-bottom-width: 2px;
+        }
+        
+        .py-7 {
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+        }
+        
+        .px-6 {
+            padding-left: 0.75rem;
+            padding-right: 0.75rem;
+        }
+        
+        .px-2 {
+            padding-left: 0.5rem;
+            padding-right: 0.5rem;
+        }
+        
+        .my-8 {
+            margin-top: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .mr-4 {
+            margin-right: 1rem;
+        }
+        
+        .mr-20 {
+            margin-right: 1rem;
+        }
+        
+        .mt-8 {
+            margin-top: 0.5rem;
+        }
+        
+        .text-right {
+            text-align: right;
+        }
+        
+        .w-32 {
+            width: 80px;
+            height: auto;
+        }
+        
+        .scissors-line {
+            background: white;
+            position: relative;
+        }
+        
+        .scissors-icon {
+            font-size: 24px;
+            background: white;
+            padding: 0 10px;
+            color: #333;
+        }
+        
         @media print {
-            .elemento{
+            .elemento {
                 display: none;
+            }
+            
+            body {
+                margin: 0;
+                padding: 0.5cm;
+                background: white;
+            }
+            
+            div.border-b-2.border-dashed {
+                page-break-after: auto;
+                margin-bottom: 0.5cm;
+            }
+            
+            .scissors-line {
+                background: white;
             }
         }  
     </style>
     <script src="src/js/recibo.js"></script>
+    <script>
+        const btnSalvarPDF = document.querySelector("#btnSalvarPDF");
+        
+        btnSalvarPDF.addEventListener('click', () => {
+            const element = document.body;
+            const opt = {
+                margin: 0.5,
+                filename: 'recibo.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'cm', format: 'a4', orientation: 'portrait' }
+            };
+            html2pdf().set(opt).from(element).save();
+        });
+    </script>
 </body>
 
 </html>
